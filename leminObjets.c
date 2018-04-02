@@ -14,8 +14,9 @@ int setLinkTableTo(struct OneWay *self, char **links)
 
 }
 
-int AddToLinkTable(struct OneWay *self, char **links)
+int AddToSingletonLinkTable(struct OneWay *self, char **links)
 {
+	char ***pathtable = &(singletonLemin_getInstance()->pathtable);
 
 }
 
@@ -26,7 +27,9 @@ int setActualRoom(struct OneWay *self)
 
 int setNextRoom(struct OneWay *self, int nb)
 {
-
+	if (nb != -1) {
+		return (1);
+	}
 }
 
 OneWay *OneWayConstructor()
@@ -34,9 +37,10 @@ OneWay *OneWayConstructor()
 	OneWay *self = (OneWay *) malloc(sizeof(OneWay));
 	constructObject(setRoomsTo);
 	constructObject(setLinkTableTo);
-	constructObject(AddToLinkTable);
+	constructObject(AddToSingletonLinkTable);
 	constructObject(setActualRoom);
 	constructObject(setNextRoom);
+	constructObject(isntUsed);
 	if (self == NULL)
 		return (NULL);
 	return (self);
